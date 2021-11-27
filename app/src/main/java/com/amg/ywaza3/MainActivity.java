@@ -26,5 +26,8 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         }, 2500);
+
+
+        System.out.println("hello");
     }
 }
