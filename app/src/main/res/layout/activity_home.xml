@@ -4,16 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
     android:orientation="vertical"
-    android:background="@color/app_theme"
-    tools:context=".MainActivity">
+    tools:context=".HomeActivity">
 
-    <ImageView
-        android:id="@+id/logo_image"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:src="@drawable/app_logo" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Log Out"
+        android:id="@+id/logout" />
 
 </LinearLayout>
