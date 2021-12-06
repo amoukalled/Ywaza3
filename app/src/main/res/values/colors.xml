@@ -8,5 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="green">#00FF00</color>
-    <color name="logobg">#150f1d</color>
+    <color name="app_theme">#448A4A</color>
+    <color name="darkTextColor">#020000</color>
 </resources>
