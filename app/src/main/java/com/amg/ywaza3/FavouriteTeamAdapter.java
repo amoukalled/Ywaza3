@@ -99,7 +99,7 @@ public class FavouriteTeamAdapter extends RecyclerView.Adapter<FavouriteTeamAdap
                                 @Override
                                 public void onComplete(@NonNull Task task) {
                                     if (task.isSuccessful()) {
-                                        Toast.makeText(mTeam.getContext(), "Successfully chose favourite Team! Welcome!", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(mTeam.getContext(), "Successfully chose favourite Team!\nWelcome!", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(tContext, LoginActivity.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                         tContext.startActivity(intent);
