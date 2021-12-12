@@ -50,11 +50,6 @@ public class RegisterActivity extends AppCompatActivity {
         logBtn2 = findViewById(R.id.go_to_login_button);
 
 
-        if (fAuth.getCurrentUser() != null) {
-            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-            finish();
-        }
-
         logBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,9 +113,17 @@ public class RegisterActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 Toast.makeText(RegisterActivity.this, "User Created", Toast.LENGTH_SHORT).show();
-                                UserModel helperClass = new UserModel(email, password, username, "Chelsea");
+                                UserModel helperClass = new UserModel(email, password, username, "");
                                 myRef.push().setValue(helperClass);
-                                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+
+                                fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        if (task.isSuccessful()) {
+                                            startActivity(new Intent(getApplicationContext(), FavouriteTeamActivity.class));
+                                        }
+                                    }
+                                });
                             } else {
                                 Toast.makeText(RegisterActivity.this, "Error: Email already taken!", Toast.LENGTH_SHORT).show();
 

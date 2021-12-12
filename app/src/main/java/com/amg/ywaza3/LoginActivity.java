@@ -31,12 +31,13 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        logEmail = (EditText) findViewById(R.id.editTextEmail);
-        logPassword = (EditText) findViewById(R.id.editTextPassword);
+        logEmail = findViewById(R.id.editTextEmail);
+        logPassword = findViewById(R.id.editTextPassword);
         loginBtn = findViewById(R.id.login_button);
         gotoReg = findViewById(R.id.go_to_reg);
         gotoReg2 = findViewById(R.id.go_to_reg2);
         fAuth = FirebaseAuth.getInstance();
+
 
         gotoReg.setOnClickListener(new View.OnClickListener() {
             @Override
