@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,11 +7,20 @@
     android:orientation="vertical"
     tools:context=".HomeActivity">
 
-
-    <Button
+    <FrameLayout
+        android:id="@+id/fragment_container_homepage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Log Out"
-        android:id="@+id/logout" />
+        android:layout_above="@id/bottom_navigation_homepage" />
 
-</LinearLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation_homepage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-5dp"
+        android:background="?android:attr/windowBackground"
+        app:itemIconTint="@color/app_theme"
+        app:itemTextColor="@color/app_theme"
+        app:menu="@menu/bottom_navigation" />
+</RelativeLayout>

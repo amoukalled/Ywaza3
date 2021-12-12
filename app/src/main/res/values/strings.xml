@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Ywaza3</string>
+    <string name="profile_icon_title">Profile</string>
+    <string name="matches_icon_title">Matches</string>
+    <string name="standings_icon_title">Standings</string>
+    <string name="favorite_icon_title">Favorite</string>
 </resources>
