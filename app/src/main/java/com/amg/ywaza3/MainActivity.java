@@ -15,7 +15,6 @@ import java.util.TimerTask;
 public class MainActivity extends AppCompatActivity {
 
     Timer timer;
-    FirebaseAuth fAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,13 +25,6 @@ public class MainActivity extends AppCompatActivity {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-
-                fAuth = FirebaseAuth.getInstance();
-
-                if (fAuth.getCurrentUser() != null) {
-                    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                    finish();
-                }
 
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
