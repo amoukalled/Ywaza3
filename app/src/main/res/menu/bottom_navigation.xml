@@ -4,24 +4,20 @@
     <item
         android:id="@+id/nav_favorite"
         android:icon="@drawable/ic_baseline_star_24"
-        android:title="@string/favorite_icon_title"
-        />
-
-    <item
-        android:id="@+id/nav_profile"
-        android:icon="@drawable/ic_baseline_account_circle_24"
-        android:title="@string/profile_icon_title"
-        />
+        android:title="@string/favorite_icon_title" />
 
     <item
         android:id="@+id/nav_football"
         android:icon="@drawable/ic_navbar_football"
-        android:title="@string/matches_icon_title"
-        />
+        android:title="@string/matches_icon_title" />
 
     <item
         android:id="@+id/nav_standings"
         android:icon="@drawable/ic_navbar_standings"
-        android:title="@string/standings_icon_title"
-        />
+        android:title="@string/standings_icon_title" />
+
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/ic_baseline_account_circle_24"
+        android:title="@string/profile_icon_title" />
 </menu>
