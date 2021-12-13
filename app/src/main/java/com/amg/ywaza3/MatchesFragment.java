@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.amg.ywaza3.placeholder.PlaceholderContent;
 
 public class MatchesFragment extends Fragment {
 
@@ -58,7 +57,7 @@ public class MatchesFragment extends Fragment {
         }
 
 
-        MatchesRecyclerViewAdapter matchesRecyclerViewAdapter = new MatchesRecyclerViewAdapter(HomeTeamName, AwayTeamName, HomeImage, AwayImage,HomeScore,AwayScore);
+        MatchesRecyclerViewAdapter matchesRecyclerViewAdapter = new MatchesRecyclerViewAdapter(HomeTeamName, AwayTeamName, HomeImage, AwayImage, HomeScore, AwayScore);
         matchesRecycler.setAdapter(matchesRecyclerViewAdapter);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
