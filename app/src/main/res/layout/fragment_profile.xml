@@ -22,7 +22,6 @@
                 android:background="@color/browser_actions_bg_grey"
                 android:padding="5dp">
 
-
                 <ImageView
                     android:id="@+id/image_profile"
                     android:layout_width="100dp"

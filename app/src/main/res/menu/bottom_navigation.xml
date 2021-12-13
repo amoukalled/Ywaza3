@@ -2,14 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/nav_favorite"
-        android:icon="@drawable/ic_baseline_star_24"
-        android:title="@string/favorite_icon_title" />
-
-    <item
         android:id="@+id/nav_football"
         android:icon="@drawable/ic_navbar_football"
         android:title="@string/matches_icon_title" />
+    <item
+        android:id="@+id/nav_favorite"
+        android:icon="@drawable/ic_baseline_star_24"
+        android:title="@string/favorite_icon_title" />
 
     <item
         android:id="@+id/nav_standings"
