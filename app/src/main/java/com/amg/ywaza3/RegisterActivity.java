@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -86,6 +87,10 @@ public class RegisterActivity extends AppCompatActivity {
                     regUsername.setError("Username is required");
                     return;
                 }
+                if (userName.length() < 6) {
+                    regUsername.setError("Username must be greater than 6 characters");
+                    return;
+                }
                 if (password.length() < 6) {
                     regPassword.setError("Password must be greater than 6 characters");
                     return;
@@ -113,7 +118,7 @@ public class RegisterActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 Toast.makeText(RegisterActivity.this, "User Created", Toast.LENGTH_SHORT).show();
-                                UserModel helperClass = new UserModel(email, password, username, "");
+                                UserModel helperClass = new UserModel(email, username, "");
                                 myRef.push().setValue(helperClass);
 
                                 fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {

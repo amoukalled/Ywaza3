@@ -2,13 +2,13 @@ package com.amg.ywaza3;
 
 public class UserModel {
 
-    String email, password, userName, favTeam;
+    String email, userName, favTeam;
 
-    public UserModel() { }
+    public UserModel() {
+    }
 
-    public UserModel(String email, String password, String userName, String favTeam) {
+    public UserModel(String email, String userName, String favTeam) {
         this.email = email;
-        this.password = password;
         this.userName = userName;
         this.favTeam = favTeam;
     }
@@ -19,14 +19,6 @@ public class UserModel {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getUserName() {

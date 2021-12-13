@@ -43,6 +43,12 @@
         <entry key="..\:/Users/amouk/AndroidStudioProjects/Ywaza3/app/src/main/res/layout/recycler_favourite_team.xml" value="0.24094202898550723" />
         <entry key="..\:/Users/amouk/AndroidStudioProjects/Ywaza3/app/src/main/res/layout/singlerow.xml" value="0.264" />
         <entry key="..\:/Users/amouk/AndroidStudioProjects/Ywaza3/app/src/main/res/mipmap-anydpi-v26/logo.xml" value="0.2212962962962963" />
+        <entry key="..\:/Users/amouk/AndroidStudioProjects/Ywaza3_2.0/app/src/main/res/layout/activity_home.xml" value="0.1793478260869565" />
+        <entry key="..\:/Users/amouk/AndroidStudioProjects/Ywaza3_2.0/app/src/main/res/layout/activity_login.xml" value="0.1793478260869565" />
+        <entry key="..\:/Users/amouk/AndroidStudioProjects/Ywaza3_2.0/app/src/main/res/layout/fragment_favorite.xml" value="0.1793478260869565" />
+        <entry key="..\:/Users/amouk/AndroidStudioProjects/Ywaza3_2.0/app/src/main/res/layout/fragment_profile.xml" value="0.1793478260869565" />
+        <entry key="..\:/Users/amouk/AndroidStudioProjects/Ywaza3_2.0/app/src/main/res/layout/fragment_standings.xml" value="0.1793478260869565" />
+        <entry key="..\:/Users/amouk/AndroidStudioProjects/Ywaza3_2.0/app/src/main/res/menu/bottom_navigation.xml" value="0.25" />
       </map>
     </option>
   </component>

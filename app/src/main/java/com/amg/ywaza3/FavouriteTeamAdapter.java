@@ -87,20 +87,18 @@ public class FavouriteTeamAdapter extends RecyclerView.Adapter<FavouriteTeamAdap
                             String id = data.getKey();
                             String userName = data.child("userName").getValue().toString();
                             String email = data.child("email").getValue().toString();
-                            String password = data.child("password").getValue().toString();
 
                             HashMap user = new HashMap();
                             user.put("email", email);
                             user.put("userName", userName);
-                            user.put("password", password);
                             user.put("favTeam", team.getName());
 
                             dReference.child(id).updateChildren(user).addOnCompleteListener(new OnCompleteListener() {
                                 @Override
                                 public void onComplete(@NonNull Task task) {
                                     if (task.isSuccessful()) {
-                                        Toast.makeText(mTeam.getContext(), "Successfully chose favourite Team!\nWelcome!", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(tContext, LoginActivity.class);
+                                        Toast.makeText(mTeam.getContext(), "Successfully chose favourite Team!", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(tContext, HomeActivity.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                         tContext.startActivity(intent);
                                     } else {
