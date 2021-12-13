@@ -109,5 +109,12 @@ public class TeamSQLiteOpenHelper extends SQLiteOpenHelper {
         return data;
     }
 
+    public Cursor getTeamStanding() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String qry = "SELECT T_Name, T_Standing, T_IMAGE_RESOURCE_ID FROM TEAMS";
+        Cursor data = db.rawQuery(qry, null);
+        return data;
+    }
+
 }
 

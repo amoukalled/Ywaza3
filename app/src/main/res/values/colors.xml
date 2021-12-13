@@ -11,4 +11,5 @@
     <color name="app_theme">#448A4A</color>
     <color name="darkTextColor">#020000</color>
     <color name="red">#FF0000</color>
+    <color name="grey_background">#DCDCDC</color>
 </resources>

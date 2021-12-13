@@ -4,4 +4,12 @@
     <string name="matches_icon_title">Matches</string>
     <string name="standings_icon_title">Standings</string>
     <string name="favorite_icon_title">Favorite</string>
+    <string name="season_title_in_standings">Season 21-22</string>
+    <string name="club_title_in_standings">Club</string>
+    <string name="mp_title_in_standings">MP</string>
+    <string name="w_title_in_standings">W</string>
+    <string name="d_title_in_standings">D</string>
+    <string name="l_title_in_standings">L</string>
+    <string name="pts_title_in_standings">PTS</string>
+    <string name="premier_league_title_in_standings">PREMIER LEAGUE</string>
 </resources>
