@@ -26,7 +26,7 @@ public class HomeActivity extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation_homepage);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_homepage, new MatchesFragment()).commit();//showing the first fragment after logging in
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_homepage, new FavoriteFragment()).commit();//showing the first fragment after logging in
     }
 
     //this listener is for the bottom navigation
