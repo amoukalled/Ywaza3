@@ -10,7 +10,7 @@
         android:background="@color/app_theme"
         android:text="Select Favourite Team"
         android:textAlignment="center"
-        android:textColor="@color/darkTextColor"
+        android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="bold" />
 
