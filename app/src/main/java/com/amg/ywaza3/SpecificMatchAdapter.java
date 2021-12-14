@@ -31,6 +31,11 @@ public class SpecificMatchAdapter extends RecyclerView.Adapter<SpecificMatchAdap
     int seats = 0;
     private List<MatchesModel> mMatches;
 
+    public static double homeWinPercentage = 0;
+    public static double drawPercentage = 0;
+    public static double awayWinPercentage = 0;
+    public static double allPercentage = 1;
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
@@ -70,6 +75,12 @@ public class SpecificMatchAdapter extends RecyclerView.Adapter<SpecificMatchAdap
         TextView stadium = viewHolder.stadium;
         Button bookTicket = viewHolder.book;
         Spinner spinner = viewHolder.bookingSpinner;
+        Button homeWin = viewHolder.homeWin;
+        Button awayWin = viewHolder.awayWin;
+        Button draw = viewHolder.draw;
+        TextView homeWinText = viewHolder.homeWinText;
+        TextView drawText = viewHolder.drawText;
+        TextView awayWinText = viewHolder.awayWinText;
 
         homeTeamLogo.setImageResource(matchesModel.getHomeTeamID());
         awayTeamLogo.setImageResource(matchesModel.getAwayTeamID());
@@ -112,6 +123,54 @@ public class SpecificMatchAdapter extends RecyclerView.Adapter<SpecificMatchAdap
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.tContext, android.R.layout.simple_spinner_item, values);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinner.setAdapter(adapter);
+
+        homeWin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                homeWinPercentage += 100;
+                Toast.makeText(tContext, "You Have Successfully Voted!", Toast.LENGTH_SHORT).show();
+
+                MatchesFragment matchesFragment = new MatchesFragment();
+                FragmentTransaction ft = ((FragmentActivity) tContext).getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_container_homepage, matchesFragment).commit();
+            }
+        });
+
+        draw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawPercentage += 100;
+                Toast.makeText(tContext, "You Have Successfully Voted!", Toast.LENGTH_SHORT).show();
+
+                MatchesFragment matchesFragment = new MatchesFragment();
+                FragmentTransaction ft = ((FragmentActivity) tContext).getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_container_homepage, matchesFragment).commit();
+            }
+        });
+
+        awayWin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                awayWinPercentage += 100;
+                Toast.makeText(tContext, "You Have Successfully Voted!", Toast.LENGTH_SHORT).show();
+
+                MatchesFragment matchesFragment = new MatchesFragment();
+                FragmentTransaction ft = ((FragmentActivity) tContext).getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_container_homepage, matchesFragment).commit();
+            }
+        });
+        allPercentage = homeWinPercentage + drawPercentage + awayWinPercentage;
+        System.out.println(allPercentage);
+        double homeWinCalculated = ((homeWinPercentage / allPercentage) * 100);
+        System.out.println(homeWinCalculated);
+        double awayWinCalculated = ((awayWinPercentage / allPercentage) * 100);
+        System.out.println(awayWinCalculated);
+        double drawCalculated = ((drawPercentage / allPercentage) * 100);
+        System.out.println(drawCalculated);
+
+        homeWinText.setText("Win %: " + homeWinCalculated);
+        drawText.setText("Draw %: " + drawCalculated);
+        awayWinText.setText("Win %: " + awayWinCalculated);
     }
 
     @Override
@@ -121,7 +180,7 @@ public class SpecificMatchAdapter extends RecyclerView.Adapter<SpecificMatchAdap
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView homeTeam, awayTeam, homeTeamScore, awayTeamScore, matchDate, stadium, numberOfSeats;
+        TextView homeTeam, awayTeam, homeTeamScore, awayTeamScore, matchDate, stadium, numberOfSeats, homeWinText, drawText, awayWinText;
         Button homeWin, draw, awayWin, book;
         ImageView homeImage, awayImage;
         Spinner bookingSpinner;
@@ -142,6 +201,9 @@ public class SpecificMatchAdapter extends RecyclerView.Adapter<SpecificMatchAdap
             book = (Button) itemView.findViewById(R.id.book_button);
             bookingSpinner = (Spinner) itemView.findViewById(R.id.booking_spinner);
             numberOfSeats = (TextView) itemView.findViewById(R.id.number_of_seats_text_view);
+            homeWinText = (TextView) itemView.findViewById(R.id.home_win_percentage);
+            drawText = (TextView) itemView.findViewById(R.id.draw_percentage);
+            awayWinText = (TextView) itemView.findViewById(R.id.away_win_percentage);
         }
     }
 }
