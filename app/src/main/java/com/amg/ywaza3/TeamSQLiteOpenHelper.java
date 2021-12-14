@@ -507,5 +507,12 @@ public class TeamSQLiteOpenHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public Cursor getFavoriteMatchesTemporary(String teamName1, String teamName2) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor data = db.rawQuery( "SELECT t1.T_Name, t2.T_Name, t1.T_IMAGE_RESOURCE_ID, t2.T_IMAGE_RESOURCE_ID, m.M_HomeTeamScore, m.M_AwayTeamScore, m.M_DATE, m.M_STADIUM FROM MATCHES m, TEAMS t1, TEAMS t2 WHERE t1.T_Name = ? AND t2.T_Name=?", new String[]{teamName1, teamName2});
+        return data;
+    }
+
+
 }
 
