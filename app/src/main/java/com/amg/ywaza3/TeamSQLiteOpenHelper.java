@@ -46,67 +46,67 @@ public class TeamSQLiteOpenHelper extends SQLiteOpenHelper {
         insertTeam(db, 1, "Burnley", 18, R.drawable.burnley);
 
         //Chelsea Matches
-        insertMatch(db, 0, 14, 0, 3, 2, "December 4, 2021", "London Stadium");
-        insertMatch(db, 1, 0, 8, 3, 2, "December 11, 2021", "Stamford Bridge");
-        insertMatch(db, 2, 0, 6, 0, 0, "December 16, 2021", "Stamford Bridge");
+        insertMatch(db, 0, 15, 1, 3, 2, "December 4, 2021", "London Stadium");
+        insertMatch(db, 1, 1, 9, 3, 2, "December 11, 2021", "Stamford Bridge");
+        insertMatch(db, 2, 1, 7, 0, 0, "December 16, 2021", "Stamford Bridge");
         //Man City Matches
-        insertMatch(db, 3, 13, 1, 1, 3, "December 4, 2021", "Vicarage Road");
-        insertMatch(db, 4, 1, 15, 1, 0, "December 11, 2021", "Etihad Stadium");
-        insertMatch(db, 5, 0, 6, 0, 0, "December 14, 2021", "Etihad Stadium");
+        insertMatch(db, 3, 14, 2, 1, 3, "December 4, 2021", "Vicarage Road");
+        insertMatch(db, 4, 2, 16, 1, 0, "December 11, 2021", "Etihad Stadium");
+        insertMatch(db, 5, 1, 7, 0, 0, "December 14, 2021", "Etihad Stadium");
         //Liverpool Matches
-        insertMatch(db, 6, 15, 2, 0, 1, "December 4, 2021", "Molineux Stadium");
-        insertMatch(db, 7, 2, 16, 1, 0, "December 11, 2021", "Anfield");
-        insertMatch(db, 8, 2, 10, 0, 0, "December 16, 2021", "Anfield");
+        insertMatch(db, 6, 16, 3, 0, 1, "December 4, 2021", "Molineux Stadium");
+        insertMatch(db, 7, 3, 17, 1, 0, "December 11, 2021", "Anfield");
+        insertMatch(db, 8, 3, 11, 0, 0, "December 16, 2021", "Anfield");
         //Man United Matches
-        insertMatch(db, 9, 3, 7, 1, 0, "December 5, 2021", "Old Trafford");
-        insertMatch(db, 10, 11, 3, 0, 1, "December 11, 2021", "Carrow Road");
-        insertMatch(db, 11, 3, 18, 0, 0, "December 16, 2021", "Old Trafford");
+        insertMatch(db, 9, 4, 8, 1, 0, "December 5, 2021", "Old Trafford");
+        insertMatch(db, 10, 12, 4, 0, 1, "December 11, 2021", "Carrow Road");
+        insertMatch(db, 11, 4, 19, 0, 0, "December 16, 2021", "Old Trafford");
         //Arsenal Matches
-        insertMatch(db, 12, 6, 4, 2, 1, "December 6, 2021", "Goodison Park");
-        insertMatch(db, 13, 4, 12, 3, 0, "December 11, 2021", "Emirates Stadium");
-        insertMatch(db, 14, 4, 14, 0, 0, "December 15, 2021", "Emirates Stadium");
+        insertMatch(db, 12, 7, 5, 2, 1, "December 6, 2021", "Goodison Park");
+        insertMatch(db, 13, 5, 13, 3, 0, "December 11, 2021", "Emirates Stadium");
+        insertMatch(db, 14, 5, 15, 0, 0, "December 15, 2021", "Emirates Stadium");
         //Tottenham Matches
-        insertMatch(db, 15, 5, 17, 2, 0, "December 2, 2021", "Tottenham Hotspur Stadium");
-        insertMatch(db, 16, 5, 11, 3, 0, "December 5, 2021", "Tottenham Hotspur Stadium");
-        insertMatch(db, 17, 9, 5, 0, 0, "December 16, 2021", "King Power Stadium");
+        insertMatch(db, 15, 6, 18, 2, 0, "December 2, 2021", "Tottenham Hotspur Stadium");
+        insertMatch(db, 16, 6, 12, 3, 0, "December 5, 2021", "Tottenham Hotspur Stadium");
+        insertMatch(db, 17, 10, 6, 0, 0, "December 16, 2021", "King Power Stadium");
         //Everton Matches
-        insertMatch(db, 18, 6, 4, 2, 1, "December 6, 2021", "Goodison Park");
-        insertMatch(db, 19, 7, 6, 3, 1, "December 12, 2021", "Selhurst Park");
-        insertMatch(db, 20, 0, 6, 0, 0, "December 16, 2021", "Stamford Bridge");
+        insertMatch(db, 18, 7, 5, 2, 1, "December 6, 2021", "Goodison Park");
+        insertMatch(db, 19, 8, 7, 3, 1, "December 12, 2021", "Selhurst Park");
+        insertMatch(db, 20, 1, 7, 0, 0, "December 16, 2021", "Stamford Bridge");
         //Crystal Palace Matches
-        insertMatch(db, 21, 3, 7, 1, 0, "December 5, 2021", "Old Trafford");
-        insertMatch(db, 22, 7, 6, 3, 1, "December 12, 2021", "Selhurst Park");
-        insertMatch(db, 23, 7, 12, 0, 0, "December 16, 2021", "Selhurst Park");
+        insertMatch(db, 21, 4, 8, 1, 0, "December 5, 2021", "Old Trafford");
+        insertMatch(db, 22, 8, 7, 3, 1, "December 12, 2021", "Selhurst Park");
+        insertMatch(db, 23, 8, 13, 0, 0, "December 16, 2021", "Selhurst Park");
         //Leeds United Matches
-        insertMatch(db, 24, 8, 17, 2, 2, "December 5, 2021", "Elland Road");
-        insertMatch(db, 25, 0, 8, 3, 2, "December 11, 2021", "Stamford Bridge");
-        insertMatch(db, 26, 1, 8, 0, 0, "December 14, 2021", "Etihad Stadium");
+        insertMatch(db, 24, 9, 18, 2, 2, "December 5, 2021", "Elland Road");
+        insertMatch(db, 25, 1, 9, 3, 2, "December 11, 2021", "Stamford Bridge");
+        insertMatch(db, 26, 2, 9, 0, 0, "December 14, 2021", "Etihad Stadium");
         //Leicester City Matches
-        insertMatch(db, 27, 16, 9, 2, 1, "December 5, 2021", "Villa Park");
-        insertMatch(db, 28, 9, 10, 4, 0, "December 12, 2021", "King Power Stadium");
-        insertMatch(db, 29, 9, 5, 0, 0, "December 16, 2021", "King Power Stadium");
+        insertMatch(db, 27, 17, 10, 2, 1, "December 5, 2021", "Villa Park");
+        insertMatch(db, 28, 10, 11, 4, 0, "December 12, 2021", "King Power Stadium");
+        insertMatch(db, 29, 10, 6, 0, 0, "December 16, 2021", "King Power Stadium");
         //Newcastle United Matches
-        insertMatch(db, 30, 10, 19, 1, 0, "December 4, 2021", "St James Park");
-        insertMatch(db, 31, 9, 10, 4, 0, "December 13, 2021", "King Power Stadium");
-        insertMatch(db, 32, 2, 10, 0, 0, "December 16, 2021", "Anfield");
+        insertMatch(db, 30, 11, 20, 1, 0, "December 4, 2021", "St James Park");
+        insertMatch(db, 31, 10, 11, 4, 0, "December 13, 2021", "King Power Stadium");
+        insertMatch(db, 32, 3, 11, 0, 0, "December 16, 2021", "Anfield");
         //Norwich City Matches
-        insertMatch(db, 33, 11, 3, 0, 1, "December 11, 2021", "Carrow Road");
+        insertMatch(db, 33, 12, 4, 0, 1, "December 11, 2021", "Carrow Road");
         //Southampton Matches
-        insertMatch(db, 35, 4, 12, 3, 0, "December 11, 2021", "Emirates Stadium");
+        insertMatch(db, 35, 5, 13, 3, 0, "December 11, 2021", "Emirates Stadium");
         //Watford Matches
-        insertMatch(db, 36, 17, 13, 2, 1, "December 10, 2021", "Brentford Community Stadium");
+        insertMatch(db, 36, 18, 14, 2, 1, "December 10, 2021", "Brentford Community Stadium");
         //West Ham  Matches
-        insertMatch(db, 37, 19, 14, 0, 0, "December 16, 2021", "Turf Moor");
+        insertMatch(db, 37, 20, 15, 0, 0, "December 16, 2021", "Turf Moor");
         //Wolves  Matches
-        insertMatch(db, 38, 15, 10, 0, 0, "December 16, 2021", "Anfield");
+        insertMatch(db, 38, 16, 11, 0, 0, "December 16, 2021", "Anfield");
         //Aston Villa  Matches
-        insertMatch(db, 39, 1, 16, 1, 0, "December 11, 2021", "Etihad Stadium");
+        insertMatch(db, 39, 2, 17, 1, 0, "December 11, 2021", "Etihad Stadium");
         //Brentford Matches
-        insertMatch(db, 40, 17, 13, 2, 1, "December 10, 2021", "Brentford Community Stadium");
+        insertMatch(db, 40, 18, 14, 2, 1, "December 10, 2021", "Brentford Community Stadium");
         //Brighton Matches
-        insertMatch(db, 41, 12, 18, 1, 1, "December 15, 2021", "St Mary's Stadium");
+        insertMatch(db, 41, 13, 19, 1, 1, "December 15, 2021", "St Mary's Stadium");
         //Burnley Matches
-        insertMatch(db, 42, 19, 14, 0, 0, "December 12, 2021", "Turf Moor");
+        insertMatch(db, 42, 20, 15, 0, 0, "December 12, 2021", "Turf Moor");
 
 
         db.execSQL("CREATE TABLE PLAYERS(" +
@@ -426,6 +426,20 @@ public class TeamSQLiteOpenHelper extends SQLiteOpenHelper {
     public Cursor getTeamStanding() {
         SQLiteDatabase db = this.getWritableDatabase();
         String qry = "SELECT T_Name, T_Standing, T_IMAGE_RESOURCE_ID FROM TEAMS ORDER BY T_Standing";
+        Cursor data = db.rawQuery(qry, null);
+        return data;
+    }
+
+    public Cursor getMatches() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String qry = "SELECT * FROM MATCHES";
+        Cursor data = db.rawQuery(qry, null);
+        return data;
+    }
+
+    public Cursor getMatchesTemporary() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String qry = "SELECT t1.T_IMAGE_RESOURCE_ID, t2.T_IMAGE_RESOURCE_ID, m.M_HomeTeamScore, m.M_AwayTeamScore, m.M_DATE, m.M_STADIUM FROM MATCHES m, TEAMS t1, TEAMS t2 WHERE m.M_HomeTeamID = t1.T_id AND m.M_AwayTeamID = t2.T_id";
         Cursor data = db.rawQuery(qry, null);
         return data;
     }
