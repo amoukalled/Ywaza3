@@ -24,15 +24,27 @@ public class TeamSQLiteOpenHelper extends SQLiteOpenHelper {
                 "T_Standing INTEGER," +
                 "T_IMAGE_RESOURCE_ID INTEGER);");
 
-        insertTeam(db, 1, "Chelsea", 1, R.drawable.chelsea);
-        insertTeam(db, 1, "Manchester City", 2, R.drawable.city);
-        insertTeam(db, 1, "Liverpool", 3, R.drawable.liverpool);
-        insertTeam(db, 1, "Manchester United", 4, R.drawable.united);
-        insertTeam(db, 1, "Arsenal", 5, R.drawable.arsenal);
-        insertTeam(db, 1, "Tottenham", 6, R.drawable.tottenham);
-        insertTeam(db, 2, "Real Madrid", 1, R.drawable.realmadrid);
-        insertTeam(db, 2, "Atletico Madrid", 2, R.drawable.atmadrid);
-        insertTeam(db, 2, "F.C. Barcelona", 3, R.drawable.barcelona);
+        insertTeam(db, 1, "Chelsea", 3, R.drawable.chelsea);
+        insertTeam(db, 1, "Manchester City", 1, R.drawable.city);
+        insertTeam(db, 1, "Liverpool", 2, R.drawable.liverpool);
+        insertTeam(db, 1, "Manchester United", 5, R.drawable.united);
+        insertTeam(db, 1, "Arsenal", 6, R.drawable.arsenal);
+        insertTeam(db, 1, "Tottenham", 7, R.drawable.tottenham);
+        insertTeam(db, 1, "Everton", 14, R.drawable.everton);
+        insertTeam(db, 1, "Crystal Palace", 12, R.drawable.crystalpalace);
+        insertTeam(db, 1, "Leeds United", 15, R.drawable.leeds);
+        insertTeam(db, 1, "Leicester City", 8, R.drawable.leicester);
+        insertTeam(db, 1, "Newcastle United", 19, R.drawable.newcastle);
+        insertTeam(db, 1, "Norwich City", 20, R.drawable.norwich);
+        insertTeam(db, 1, "Southampton", 16, R.drawable.southampton);
+        insertTeam(db, 1, "Watford", 17, R.drawable.watford);
+        insertTeam(db, 1, "Westham United", 4, R.drawable.westham);
+        insertTeam(db, 1, "Wolverhampton", 9, R.drawable.wolves);
+        insertTeam(db, 1, "Aston Villa", 13, R.drawable.astonvilla);
+        insertTeam(db, 1, "Brentford", 10, R.drawable.brentford);
+        insertTeam(db, 1, "Brighton", 11, R.drawable.brighton);
+        insertTeam(db, 1, "Burnley", 18, R.drawable.burnley);
+
 
         db.execSQL("CREATE TABLE PLAYERS(" +
                 "P_id INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -62,19 +74,6 @@ public class TeamSQLiteOpenHelper extends SQLiteOpenHelper {
                 "V_MatchID INTEGER," +
                 "V_UserID INTEGER," +
                 "V_EventResult INTEGER);");
-
-        db.execSQL("CREATE TABLE LEAGUE(" +
-                "L_id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "L_LName TEXT," +
-                "L_TeamID INTEGER);");
-
-        db.execSQL("CREATE TABLE USER(" +
-                "U_id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "U_Email TEXT," +
-                "U_Password TEXT," +
-                "U_Username TEXT," +
-                "U_FavTeam INTEGER," +
-                "U_IMAGE_RESOURCE_ID INTEGER);");
     }
 
     public static void insertTeam(SQLiteDatabase db, int LeagueID, String name, int Standing, int TimageID) {
@@ -111,7 +110,7 @@ public class TeamSQLiteOpenHelper extends SQLiteOpenHelper {
 
     public Cursor getTeamStanding() {
         SQLiteDatabase db = this.getWritableDatabase();
-        String qry = "SELECT T_Name, T_Standing, T_IMAGE_RESOURCE_ID FROM TEAMS";
+        String qry = "SELECT T_Name, T_Standing, T_IMAGE_RESOURCE_ID FROM TEAMS ORDER BY T_Standing";
         Cursor data = db.rawQuery(qry, null);
         return data;
     }
