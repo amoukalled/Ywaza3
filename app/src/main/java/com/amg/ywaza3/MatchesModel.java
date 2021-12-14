@@ -3,6 +3,9 @@ package com.amg.ywaza3;
 
 public class MatchesModel {
 
+    private String homeTeamName;
+    private String awayTeamName;
+
     private int homeTeamLogo;
     private int awayTeamLogo;
 
@@ -11,7 +14,9 @@ public class MatchesModel {
 
     private String date, stadium;
 
-    public MatchesModel(int homeTeamID, int awayTeamID, int homeScore, int awayScore, String date, String stadium) {
+    public MatchesModel(String homeTeamName, String awayTeamName, int homeTeamID, int awayTeamID, int homeScore, int awayScore, String date, String stadium) {
+        this.homeTeamName = homeTeamName;
+        this.awayTeamName = awayTeamName;
         this.homeTeamLogo = homeTeamID;
         this.awayTeamLogo = awayTeamID;
         this.homeScore = homeScore;
@@ -66,6 +71,22 @@ public class MatchesModel {
 
     public String getStadium() {
         return stadium;
+    }
+
+    public String getHomeTeamName() {
+        return homeTeamName;
+    }
+
+    public void setHomeTeamName(String homeTeamName) {
+        this.homeTeamName = homeTeamName;
+    }
+
+    public String getAwayTeamName() {
+        return awayTeamName;
+    }
+
+    public void setAwayTeamName(String awayTeamName) {
+        this.awayTeamName = awayTeamName;
     }
 }
 

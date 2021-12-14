@@ -30,6 +30,7 @@
             android:layout_marginTop="30dp"
             android:textSize="40sp" />
 
+
         <TextView
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -71,14 +72,22 @@
             android:textSize="15sp" />
 
         <TextView
+            android:id="@+id/date_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="TextView" />
+
+        <TextView
             android:id="@+id/away_team_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="140dp"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="130dp"
             android:textSize="15sp" />
 
     </LinearLayout>
+
 
 </androidx.cardview.widget.CardView>
 

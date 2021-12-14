@@ -24,6 +24,35 @@ public class TeamSQLiteOpenHelper extends SQLiteOpenHelper {
                 "T_Standing INTEGER," +
                 "T_IMAGE_RESOURCE_ID INTEGER);");
 
+        db.execSQL("CREATE TABLE MATCHES(" +
+                "M_id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "M_HomeTeamID INTEGER," +
+                "M_AwayTeamID INTEGER," +
+                "M_HomeTeamScore INTEGER," +
+                "M_AwayTeamScore INTEGER," +
+                "M_DATE TEXT," +
+                "M_STADIUM TEXT);");
+
+        db.execSQL("CREATE TABLE BOOKINGS(" +
+                "B_id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "B_MatchID INTEGER," +
+                "B_UserID INTEGER," +
+                "B_TotalTickets INTEGER);");
+
+        db.execSQL("CREATE TABLE VOTING(" +
+                "V_id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "V_MatchID INTEGER," +
+                "V_UserID INTEGER," +
+                "V_EventResult INTEGER);");
+
+        db.execSQL("CREATE TABLE PLAYERS(" +
+                "P_id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "P_TeamID INTEGER," +
+                "P_Name TEXT," +
+                "P_Position TEXT," +
+                "P_Goals INTEGER," +
+                "P_Assists INTEGER);");
+
         insertTeam(db, 1, "Chelsea", 3, R.drawable.chelsea);
         insertTeam(db, 1, "Manchester City", 1, R.drawable.city);
         insertTeam(db, 1, "Liverpool", 2, R.drawable.liverpool);
@@ -107,15 +136,6 @@ public class TeamSQLiteOpenHelper extends SQLiteOpenHelper {
         insertMatch(db, 41, 13, 19, 1, 1, "December 15, 2021", "St Mary's Stadium");
         //Burnley Matches
         insertMatch(db, 42, 20, 15, 0, 0, "December 12, 2021", "Turf Moor");
-
-
-        db.execSQL("CREATE TABLE PLAYERS(" +
-                "P_id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "P_TeamID INTEGER," +
-                "P_Name TEXT," +
-                "P_Position TEXT," +
-                "P_Goals INTEGER," +
-                "P_Assists INTEGER);");
 
 
         insertPlayer(db, 0, "Romely Lukaku", "FW", 3, 0);
@@ -358,27 +378,6 @@ public class TeamSQLiteOpenHelper extends SQLiteOpenHelper {
         insertPlayer(db, 19, "Charlie Taylor", "DF", 0, 0);
         insertPlayer(db, 19, "Nick Pope", "GK", 0, 0);
 
-
-        db.execSQL("CREATE TABLE MATCHES(" +
-                "M_id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "M_HomeTeamID INTEGER," +
-                "M_AwayTeamID INTEGER," +
-                "M_HomeTeamScore INTEGER," +
-                "M_AwayTeamScore INTEGER," +
-                "M_DATE TEXT," +
-                "M_STADIUM TEXT);");
-
-        db.execSQL("CREATE TABLE BOOKINGS(" +
-                "B_id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "B_MatchID INTEGER," +
-                "B_UserID INTEGER," +
-                "B_TotalTickets INTEGER);");
-
-        db.execSQL("CREATE TABLE VOTING(" +
-                "V_id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "V_MatchID INTEGER," +
-                "V_UserID INTEGER," +
-                "V_EventResult INTEGER);");
     }
 
     public static void insertTeam(SQLiteDatabase db, int LeagueID, String name, int Standing, int TimageID) {
@@ -397,7 +396,7 @@ public class TeamSQLiteOpenHelper extends SQLiteOpenHelper {
         contentValues.put("P_Position", PPos);
         contentValues.put("P_Goals", PGoals);
         contentValues.put("P_Assists", PAssists);
-        db.insert("PLAYER", null, contentValues);
+        db.insert("PLAYERS", null, contentValues);
     }
 
     public static void insertMatch(SQLiteDatabase db, int MatchID, int HomeTeamID, int AwayTeamID, int HomeScore, int AwayScore, String MDate, String MStadium) {
@@ -409,6 +408,7 @@ public class TeamSQLiteOpenHelper extends SQLiteOpenHelper {
         contentValues.put("M_AwayTeamScore", AwayScore);
         contentValues.put("M_DATE", MDate);
         contentValues.put("M_STADIUM", MStadium);
+        db.insert("MATCHES", null, contentValues);
     }
 
     @Override
@@ -439,7 +439,7 @@ public class TeamSQLiteOpenHelper extends SQLiteOpenHelper {
 
     public Cursor getMatchesTemporary() {
         SQLiteDatabase db = this.getWritableDatabase();
-        String qry = "SELECT t1.T_IMAGE_RESOURCE_ID, t2.T_IMAGE_RESOURCE_ID, m.M_HomeTeamScore, m.M_AwayTeamScore, m.M_DATE, m.M_STADIUM FROM MATCHES m, TEAMS t1, TEAMS t2 WHERE m.M_HomeTeamID = t1.T_id AND m.M_AwayTeamID = t2.T_id";
+        String qry = "SELECT t1.T_Name, t2.T_Name, t1.T_IMAGE_RESOURCE_ID, t2.T_IMAGE_RESOURCE_ID, m.M_HomeTeamScore, m.M_AwayTeamScore, m.M_DATE, m.M_STADIUM FROM MATCHES m, TEAMS t1, TEAMS t2 WHERE m.M_HomeTeamID = t1.T_id AND m.M_AwayTeamID = t2.T_id";
         Cursor data = db.rawQuery(qry, null);
         return data;
     }

@@ -42,11 +42,17 @@ public class MatchesRecyclerViewAdapter extends RecyclerView.Adapter<MatchesRecy
         ImageView awayTeamLogo = viewHolder.awayImage;
         TextView hTeamScore = viewHolder.homeTeamScore;
         TextView aTeamScore = viewHolder.awayTeamScore;
+        TextView homeTeamName = viewHolder.homeTeam;
+        TextView awayTeamName = viewHolder.awayTeam;
+        TextView date = viewHolder.matchDate;
 
         homeTeamLogo.setImageResource(matchesModel.getHomeTeamID());
         awayTeamLogo.setImageResource(matchesModel.getAwayTeamID());
-        hTeamScore.setText(matchesModel.getHomeScore());
-        aTeamScore.setText(matchesModel.getAwayScore());
+        hTeamScore.setText(String.valueOf(matchesModel.getHomeScore()));
+        aTeamScore.setText(String.valueOf(matchesModel.getAwayScore()));
+        homeTeamName.setText(matchesModel.getHomeTeamName());
+        awayTeamName.setText(matchesModel.getAwayTeamName());
+        date.setText(matchesModel.getDate());
     }
 
     @Override
@@ -56,7 +62,7 @@ public class MatchesRecyclerViewAdapter extends RecyclerView.Adapter<MatchesRecy
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView homeTeam, awayTeam, homeTeamScore, awayTeamScore;
+        TextView homeTeam, awayTeam, homeTeamScore, awayTeamScore, matchDate;
         ImageView homeImage, awayImage;
         CardView cardView;
 
@@ -68,6 +74,7 @@ public class MatchesRecyclerViewAdapter extends RecyclerView.Adapter<MatchesRecy
             awayTeamScore = (TextView) itemView.findViewById(R.id.away_team_score_text_view);
             homeImage = (ImageView) itemView.findViewById(R.id.home_team_image_view);
             awayImage = (ImageView) itemView.findViewById(R.id.away_team_image_view);
+            matchDate = (TextView) itemView.findViewById(R.id.date_textView);
             cardView = (CardView) itemView.findViewById(R.id.matches_card_view);
         }
     }

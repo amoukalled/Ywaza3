@@ -43,7 +43,7 @@ public class MatchesFragment extends Fragment {
             int i = 0;
             if (data.getCount() != 0) {
                 while (data.moveToNext()) {
-                    MatchesModel matches = new MatchesModel(data.getInt(0), data.getInt(1), data.getInt(2), data.getInt(3), data.getString(4), data.getString(5));
+                    MatchesModel matches = new MatchesModel(data.getString(0), data.getString(1), data.getInt(2), data.getInt(3), data.getInt(4), data.getInt(5), data.getString(6), data.getString(7));
                     matchesList.add(i, matches);
                     i++;
                 }
