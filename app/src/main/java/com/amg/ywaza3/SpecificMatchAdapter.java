@@ -1,0 +1,99 @@
+package com.amg.ywaza3;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
+
+import org.w3c.dom.Text;
+
+import java.util.List;
+
+public class SpecificMatchAdapter extends RecyclerView.Adapter<SpecificMatchAdapter.ViewHolder> {
+    Context tContext;
+    private List<MatchesModel> mMatches;
+
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        Context context = parent.getContext();
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View contactView = inflater.inflate(R.layout.recycler_specific_match, parent, false);
+        ViewHolder viewHolder = new ViewHolder(contactView);
+        return viewHolder;
+    }
+
+    public SpecificMatchAdapter(List<MatchesModel> matches, Context context) {
+        mMatches = matches;
+        tContext = context;
+    }
+
+    @Override
+    public void onBindViewHolder(SpecificMatchAdapter.ViewHolder viewHolder, int position) {
+        MatchesModel matchesModel = mMatches.get(position);
+        ImageView homeTeamLogo = viewHolder.homeImage;
+        ImageView awayTeamLogo = viewHolder.awayImage;
+        TextView hTeamScore = viewHolder.homeTeamScore;
+        TextView aTeamScore = viewHolder.awayTeamScore;
+        TextView homeTeamName = viewHolder.homeTeam;
+        TextView awayTeamName = viewHolder.awayTeam;
+        TextView date = viewHolder.matchDate;
+        TextView stadium = viewHolder.stadium;
+        Spinner spinner = viewHolder.bookingSpinner;
+
+        homeTeamLogo.setImageResource(matchesModel.getHomeTeamID());
+        awayTeamLogo.setImageResource(matchesModel.getAwayTeamID());
+        hTeamScore.setText(String.valueOf(matchesModel.getHomeScore()));
+        aTeamScore.setText(String.valueOf(matchesModel.getAwayScore()));
+        homeTeamName.setText(matchesModel.getHomeTeamName());
+        awayTeamName.setText(matchesModel.getAwayTeamName());
+        date.setText(matchesModel.getDate());
+        stadium.setText(matchesModel.getStadium());
+
+        String [] values = {"1","2","3","4","5",};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.tContext, android.R.layout.simple_spinner_item, values);
+        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        spinner.setAdapter(adapter);
+    }
+
+    @Override
+    public int getItemCount() {
+        return mMatches.size();
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+
+        TextView homeTeam, awayTeam, homeTeamScore, awayTeamScore, matchDate,stadium;
+        Button homeWin,draw,awayWin,book;
+        ImageView homeImage, awayImage;
+        Spinner bookingSpinner;
+
+        public ViewHolder(final View itemView) {
+            super(itemView);
+            homeTeam = (TextView) itemView.findViewById(R.id.m_home_team_text_view);
+            awayTeam = (TextView) itemView.findViewById(R.id.m_away_team_text_view);
+            homeTeamScore = (TextView) itemView.findViewById(R.id.m_home_team_score_text_view);
+            awayTeamScore = (TextView) itemView.findViewById(R.id.m_away_team_score_text_view);
+            homeImage = (ImageView) itemView.findViewById(R.id.m_home_team_image_view);
+            awayImage = (ImageView) itemView.findViewById(R.id.m_away_team_image_view);
+            matchDate = (TextView) itemView.findViewById(R.id.date_textView);
+            stadium = (TextView) itemView.findViewById(R.id.stadium_text_view);
+            homeWin = (Button) itemView.findViewById(R.id.win_home_button);
+            awayWin = (Button) itemView.findViewById(R.id.win_away_button);
+            draw = (Button) itemView.findViewById(R.id.draw_button);
+            book = (Button) itemView.findViewById(R.id.draw_button);
+            bookingSpinner = (Spinner) itemView.findViewById(R.id.booking_spinner);
+        }
+    }
+}
