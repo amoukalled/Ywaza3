@@ -1,6 +1,9 @@
 package com.amg.ywaza3;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -23,6 +27,8 @@ import java.util.List;
 
 public class SpecificMatchAdapter extends RecyclerView.Adapter<SpecificMatchAdapter.ViewHolder> {
     Context tContext;
+    int matchID;
+    int seats = 0;
     private List<MatchesModel> mMatches;
 
     @Override
@@ -34,14 +40,25 @@ public class SpecificMatchAdapter extends RecyclerView.Adapter<SpecificMatchAdap
         return viewHolder;
     }
 
-    public SpecificMatchAdapter(List<MatchesModel> matches, Context context) {
+    public SpecificMatchAdapter(List<MatchesModel> matches, int matchID, Context context) {
         mMatches = matches;
+        this.matchID = matchID;
         tContext = context;
     }
 
     @Override
     public void onBindViewHolder(SpecificMatchAdapter.ViewHolder viewHolder, int position) {
         MatchesModel matchesModel = mMatches.get(position);
+
+        TeamSQLiteOpenHelper sqLiteOpenHelper;
+        sqLiteOpenHelper = new TeamSQLiteOpenHelper(tContext);
+        SQLiteDatabase db = sqLiteOpenHelper.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT B_TotalTickets FROM BOOKINGS WHERE B_MatchID = ?", new String[]{String.valueOf(matchID)});
+        if (cursor.moveToFirst()) {
+            seats = cursor.getInt(0);
+        }
+
         ImageView homeTeamLogo = viewHolder.homeImage;
         ImageView awayTeamLogo = viewHolder.awayImage;
         TextView hTeamScore = viewHolder.homeTeamScore;
@@ -49,7 +66,9 @@ public class SpecificMatchAdapter extends RecyclerView.Adapter<SpecificMatchAdap
         TextView homeTeamName = viewHolder.homeTeam;
         TextView awayTeamName = viewHolder.awayTeam;
         TextView date = viewHolder.matchDate;
+        TextView nOfSeats = viewHolder.numberOfSeats;
         TextView stadium = viewHolder.stadium;
+        Button bookTicket = viewHolder.book;
         Spinner spinner = viewHolder.bookingSpinner;
 
         homeTeamLogo.setImageResource(matchesModel.getHomeTeamID());
@@ -60,8 +79,36 @@ public class SpecificMatchAdapter extends RecyclerView.Adapter<SpecificMatchAdap
         awayTeamName.setText(matchesModel.getAwayTeamName());
         date.setText(matchesModel.getDate());
         stadium.setText(matchesModel.getStadium());
+        nOfSeats.setText("Number of Seats Left: " + String.valueOf(seats));
 
-        String [] values = {"1","2","3","4","5",};
+        bookTicket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String temp = spinner.getSelectedItem().toString();
+                int nBooks = Integer.parseInt(temp);
+
+                for (int i = 0; i < nBooks; i++) {
+                    if (seats != 0) {
+                        seats--;
+                    } else {
+                        Toast.makeText(tContext, "There are no available tickets", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                }
+
+                Cursor cursor = db.rawQuery("UPDATE BOOKINGS SET B_TotalTickets = ? WHERE B_MatchID = ?", new String[]{String.valueOf(seats), String.valueOf(matchID)});
+                cursor.moveToFirst();
+                cursor.close();
+                Toast.makeText(tContext, "You Have Successfully booked a seat!", Toast.LENGTH_SHORT).show();
+
+                MatchesFragment matchesFragment = new MatchesFragment();
+                FragmentTransaction ft = ((FragmentActivity) tContext).getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_container_homepage, matchesFragment).commit();
+
+            }
+        });
+
+        String[] values = {"1", "2", "3", "4", "5",};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.tContext, android.R.layout.simple_spinner_item, values);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinner.setAdapter(adapter);
@@ -74,8 +121,8 @@ public class SpecificMatchAdapter extends RecyclerView.Adapter<SpecificMatchAdap
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView homeTeam, awayTeam, homeTeamScore, awayTeamScore, matchDate,stadium;
-        Button homeWin,draw,awayWin,book;
+        TextView homeTeam, awayTeam, homeTeamScore, awayTeamScore, matchDate, stadium, numberOfSeats;
+        Button homeWin, draw, awayWin, book;
         ImageView homeImage, awayImage;
         Spinner bookingSpinner;
 
@@ -92,8 +139,9 @@ public class SpecificMatchAdapter extends RecyclerView.Adapter<SpecificMatchAdap
             homeWin = (Button) itemView.findViewById(R.id.win_home_button);
             awayWin = (Button) itemView.findViewById(R.id.win_away_button);
             draw = (Button) itemView.findViewById(R.id.draw_button);
-            book = (Button) itemView.findViewById(R.id.draw_button);
+            book = (Button) itemView.findViewById(R.id.book_button);
             bookingSpinner = (Spinner) itemView.findViewById(R.id.booking_spinner);
+            numberOfSeats = (TextView) itemView.findViewById(R.id.number_of_seats_text_view);
         }
     }
 }

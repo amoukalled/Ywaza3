@@ -6,6 +6,8 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -60,12 +62,31 @@ public class MatchesRecyclerViewAdapter extends RecyclerView.Adapter<MatchesRecy
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                TeamSQLiteOpenHelper sqLiteOpenHelper;
+                sqLiteOpenHelper = new TeamSQLiteOpenHelper(tContext);
+                SQLiteDatabase db = sqLiteOpenHelper.getReadableDatabase();
+                Cursor data = sqLiteOpenHelper.getSpecificTeamID(matchesModel.getHomeTeamName(), matchesModel.getAwayTeamName());
+                String tID1 = null;
+                String tID2 = null;
+                if (data.moveToFirst()) {
+                    tID1 = data.getString(0);
+                    tID2 = data.getString(1);
+                }
+                int x = 0;
+                Cursor cursor = db.rawQuery("SELECT M_id FROM MATCHES WHERE M_HomeTeamID = ? AND M_AwayTeamID = ?", new String[]{tID1, tID2});
+                if (cursor.moveToFirst()) {
+                    x = cursor.getInt(0);
+                    String.valueOf(x);
+                }
+
                 SpecificMatchFragment specificMatchFragment = new SpecificMatchFragment();
                 FragmentTransaction ft = ((FragmentActivity) tContext).getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.fragment_container_homepage, specificMatchFragment).commit();
                 Bundle arguments = new Bundle();
-                arguments.putString("hometeam",matchesModel.getHomeTeamName());
-                arguments.putString("awayteam",matchesModel.getAwayTeamName());
+                arguments.putString("hometeam", matchesModel.getHomeTeamName());
+                arguments.putString("awayteam", matchesModel.getAwayTeamName());
+                arguments.putInt("matchID", x);
                 specificMatchFragment.setArguments(arguments);
             }
         });
