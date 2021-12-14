@@ -1,7 +1,9 @@
 package com.amg.ywaza3;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -68,7 +72,12 @@ public class StandingsAdapter extends RecyclerView.Adapter<StandingsAdapter.View
         viewHolder.cV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(tContext, "Clicked", Toast.LENGTH_SHORT).show();
+                TeamPlayersFragment teamPlayersFragment = new TeamPlayersFragment();
+                FragmentTransaction ft = ((FragmentActivity) tContext).getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_container_homepage, teamPlayersFragment).commit();
+                Bundle arguments = new Bundle();
+                arguments.putString("team", standingModel.getTeamName());
+                teamPlayersFragment.setArguments(arguments);
             }
         });
     }
