@@ -12,6 +12,12 @@
     <string name="l_title_in_standings">L</string>
     <string name="pts_title_in_standings">PTS</string>
     <string name="premier_league_title_in_standings">PREMIER LEAGUE</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="booking_spinner">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
 </resources>

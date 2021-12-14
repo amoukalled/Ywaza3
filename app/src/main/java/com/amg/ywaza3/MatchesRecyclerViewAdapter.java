@@ -1,10 +1,13 @@
 package com.amg.ywaza3;
 
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.media.Image;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +56,19 @@ public class MatchesRecyclerViewAdapter extends RecyclerView.Adapter<MatchesRecy
         homeTeamName.setText(matchesModel.getHomeTeamName());
         awayTeamName.setText(matchesModel.getAwayTeamName());
         date.setText(matchesModel.getDate());
+
+        viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SpecificMatchFragment specificMatchFragment = new SpecificMatchFragment();
+                FragmentTransaction ft = ((FragmentActivity) tContext).getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_container_homepage, specificMatchFragment).commit();
+                Bundle arguments = new Bundle();
+                arguments.putString("hometeam",matchesModel.getHomeTeamName());
+                arguments.putString("awayteam",matchesModel.getAwayTeamName());
+                specificMatchFragment.setArguments(arguments);
+            }
+        });
     }
 
     @Override
