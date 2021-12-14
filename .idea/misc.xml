@@ -59,6 +59,7 @@
         <entry key="app/src/main/res/layout/fragment_matches.xml" value="0.14361702127659576" />
         <entry key="app/src/main/res/layout/fragment_matches_list.xml" value="0.14918946301925026" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_specific_match.xml" value="0.16818642350557245" />
         <entry key="app/src/main/res/layout/recycler_favourite_team.xml" value="0.33" />
         <entry key="app/src/main/res/menu/bottom_navigation.xml" value="0.225" />
       </map>
