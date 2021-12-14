@@ -14,11 +14,9 @@ public class Matches {
             new Matches("Chelsea","Manchester City",R.drawable.chelsea, R.drawable.city,2,0),
             new Matches("Liverpool","Manchester United",R.drawable.liverpool, R.drawable.united,2,3),
             new Matches("Arsenal","Tottenham",R.drawable.arsenal, R.drawable.tottenham,1,1),
-            new Matches("Barcelona","Real Madrid",R.drawable.barcelona, R.drawable.realmadrid,2,1),
             new Matches("Chelsea","Manchester City",R.drawable.chelsea, R.drawable.city,2,0),
             new Matches("Liverpool","Manchester United",R.drawable.liverpool, R.drawable.united,2,3),
             new Matches("Arsenal","Tottenham",R.drawable.arsenal, R.drawable.tottenham,1,1),
-            new Matches("Barcelona","Real Madrid",R.drawable.barcelona, R.drawable.realmadrid,2,1),
     };
 
     public Matches(String hometeam, String awayteam, int hometeamimageId, int awayteamimageId, int homescore, int awayscore)

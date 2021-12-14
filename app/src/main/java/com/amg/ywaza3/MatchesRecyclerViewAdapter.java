@@ -8,9 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.amg.ywaza3.databinding.FragmentMatchesBinding;
-
-import java.util.List;
 
 public class MatchesRecyclerViewAdapter extends RecyclerView.Adapter<MatchesRecyclerViewAdapter.ViewHolder> {
 
@@ -22,8 +19,7 @@ public class MatchesRecyclerViewAdapter extends RecyclerView.Adapter<MatchesRecy
     private int[] awayscores;
 
 
-    public MatchesRecyclerViewAdapter(String[] hometeams, String[] awayteams, int[] homeimageId, int[] awayimageId, int[] homescores, int[] awayscores)
-    {
+    public MatchesRecyclerViewAdapter(String[] hometeams, String[] awayteams, int[] homeimageId, int[] awayimageId, int[] homescores, int[] awayscores) {
         this.hometeams = hometeams;
         this.awayteams = awayteams;
         this.homeimageId = homeimageId;
@@ -34,15 +30,13 @@ public class MatchesRecyclerViewAdapter extends RecyclerView.Adapter<MatchesRecy
 
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType)
-    {
+    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         CardView cv = (CardView) LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_captioned_image, viewGroup, false);
         return new ViewHolder(cv);
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder viewHolder, int position)
-    {
+    public void onBindViewHolder(final ViewHolder viewHolder, int position) {
         CardView cardView = viewHolder.cardView;
 
         TextView hometeam = cardView.findViewById(R.id.home_team_text_view);
