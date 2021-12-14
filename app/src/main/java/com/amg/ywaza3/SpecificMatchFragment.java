@@ -21,6 +21,7 @@ import java.util.List;
 public class SpecificMatchFragment extends Fragment {
 
     String hometeam, awayteam;
+    int matchID;
     RecyclerView recyclerView;
     TeamSQLiteOpenHelper sqLiteOpenHelper;
     List<MatchesModel> matchesList = new ArrayList<>();
@@ -31,6 +32,7 @@ public class SpecificMatchFragment extends Fragment {
         super.onCreate(savedInstanceState);
         hometeam = getArguments().getString("hometeam", " ");
         awayteam = getArguments().getString("awayteam", " ");
+        matchID = getArguments().getInt("matchID", 0);
     }
 
     @Override
@@ -53,12 +55,11 @@ public class SpecificMatchFragment extends Fragment {
             int i = 0;
             if (data.getCount() != 0) {
                 while (data.moveToNext()) {
-
                     MatchesModel matches = new MatchesModel(data.getString(0), data.getString(1), data.getInt(2), data.getInt(3), data.getInt(4), data.getInt(5), data.getString(6), data.getString(7));
                     matchesList.add(i, matches);
                     i++;
                 }
-                SpecificMatchAdapter adapter = new SpecificMatchAdapter(matchesList, getContext());
+                SpecificMatchAdapter adapter = new SpecificMatchAdapter(matchesList, matchID, getContext());
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager((new LinearLayoutManager(getContext())));
             } else {
