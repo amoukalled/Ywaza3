@@ -43,51 +43,48 @@ public class FavoriteFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        View view = getView();
-
         fAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = fAuth.getCurrentUser();
 
-        DatabaseReference dReference;
-        dReference = FirebaseDatabase.getInstance().getReference("Users");
-
-
-        dReference.orderByChild("email").equalTo(currentUser.getEmail()).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot data : snapshot.getChildren()) {
-                    favTeam = data.child("favTeam").getValue().toString();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        SQLiteOpenHelper sqLiteOpenHelper = new TeamSQLiteOpenHelper(getContext());
-        SQLiteDatabase db = sqLiteOpenHelper.getReadableDatabase();
-
-
+        View view = getView();
         if (view != null) {
-            sqLiteOpenHelper = new TeamSQLiteOpenHelper(getContext());
+            SQLiteOpenHelper sqLiteOpenHelper = new TeamSQLiteOpenHelper(getContext());
+            SQLiteDatabase db = sqLiteOpenHelper.getReadableDatabase();
             recyclerView = (RecyclerView) view.findViewById(R.id.matches_recycler_in_fav_fragment);
 
-            Cursor data = db.rawQuery("SELECT t1.T_Name, t2.T_Name, t1.T_IMAGE_RESOURCE_ID, t2.T_IMAGE_RESOURCE_ID, m.M_HomeTeamScore, m.M_AwayTeamScore, m.M_DATE, m.M_STADIUM FROM MATCHES m, TEAMS t1, TEAMS t2 WHERE m.M_HomeTeamID = t1.T_id AND m.M_AwayTeamID = t2.T_id AND (t1.T_Name = ? OR t2._T_Name = ?)", new String[]{favTeam});
-            int i = 0;
-            if (data.getCount() != 0) {
-                while (data.moveToNext()) {
-                    FavoriteMatchesModel matches = new FavoriteMatchesModel(data.getString(0), data.getString(1), data.getInt(2), data.getInt(3), data.getInt(4), data.getInt(5), data.getString(6), data.getString(7));
-                    favoriteMatchesList.add(i, matches);
-                    i++;
+            DatabaseReference dReference;
+            dReference = FirebaseDatabase.getInstance().getReference("Users");
+
+            dReference.orderByChild("email").equalTo(currentUser.getEmail()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot data : snapshot.getChildren()) {
+                        favTeam = data.child("favTeam").getValue().toString();
+
+                        Cursor cursor = db.rawQuery("SELECT t1.T_Name, t2.T_Name, t1.T_IMAGE_RESOURCE_ID, t2.T_IMAGE_RESOURCE_ID, m.M_HomeTeamScore, m.M_AwayTeamScore, m.M_DATE, m.M_STADIUM FROM MATCHES m, TEAMS t1, TEAMS t2 WHERE m.M_HomeTeamID = t1.T_id AND m.M_AwayTeamID = t2.T_id AND (t1.T_Name = ? OR t2.T_Name = ?)", new String[]{favTeam, favTeam});
+                        int i = 0;
+                        if (cursor.getCount() != 0) {
+                            while (cursor.moveToNext()) {
+                                FavoriteMatchesModel matches = new FavoriteMatchesModel(cursor.getString(0), cursor.getString(1), cursor.getInt(2), cursor.getInt(3), cursor.getInt(4), cursor.getInt(5), cursor.getString(6), cursor.getString(7));
+                                favoriteMatchesList.add(i, matches);
+                                i++;
+                            }
+                            FavoriteMatchesAdapter adapter = new FavoriteMatchesAdapter(favoriteMatchesList, getContext());
+                            recyclerView.setAdapter(adapter);
+                            recyclerView.setLayoutManager((new LinearLayoutManager(getContext())));
+                        } else {
+                            Toast.makeText(getContext(), "There is no data to show!", Toast.LENGTH_LONG).show();
+                        }
+                    }
                 }
-                FavoriteMatchesAdapter adapter = new FavoriteMatchesAdapter(favoriteMatchesList, getContext());
-                recyclerView.setAdapter(adapter);
-                recyclerView.setLayoutManager((new LinearLayoutManager(getContext())));
-            } else {
-                Toast.makeText(getContext(), "There is no data to show!", Toast.LENGTH_LONG).show();
-            }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+
         }
     }
 
