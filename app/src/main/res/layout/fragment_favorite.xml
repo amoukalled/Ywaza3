@@ -4,42 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/text_favorite_team_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="15dp"
-        android:text="FAVORITE TEAM"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
-
-    <ImageView
-        android:id="@+id/favorite_team_logo_in_favorite_fragment"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_below="@+id/text_favorite_team_title"
-        android:layout_marginStart="50dp" />
-
-    <TextView
-        android:id="@+id/text_favorite_team_name_in_favorite_fragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/text_favorite_team_title"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_toRightOf="@id/favorite_team_logo_in_favorite_fragment"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        tools:text="Tottenham" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/matches_recycler_in_fav_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/favorite_team_logo_in_favorite_fragment"
         android:layout_margin="7dp"
-        android:background="@color/grey_background">
-    </androidx.recyclerview.widget.RecyclerView>
+        android:background="@color/grey_background"></androidx.recyclerview.widget.RecyclerView>
 
 </RelativeLayout>

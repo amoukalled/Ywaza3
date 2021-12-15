@@ -1,6 +1,9 @@
 package com.amg.ywaza3;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -41,6 +46,7 @@ public class FavoriteMatchesAdapter extends RecyclerView.Adapter<FavoriteMatches
         TextView homeTeamName = viewHolder.homeTeam;
         TextView awayTeamName = viewHolder.awayTeam;
         TextView date = viewHolder.matchDate;
+        CardView cv = viewHolder.cardView;
 
 
         homeTeamLogo.setImageResource(favoriteMatchesModel.getHomeTeamID());
@@ -50,6 +56,38 @@ public class FavoriteMatchesAdapter extends RecyclerView.Adapter<FavoriteMatches
         homeTeamName.setText(favoriteMatchesModel.getHomeTeamName());
         awayTeamName.setText(favoriteMatchesModel.getAwayTeamName());
         date.setText(favoriteMatchesModel.getDate());
+
+        cv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                TeamSQLiteOpenHelper sqLiteOpenHelper;
+                sqLiteOpenHelper = new TeamSQLiteOpenHelper(tContext);
+                SQLiteDatabase db = sqLiteOpenHelper.getReadableDatabase();
+                Cursor data = sqLiteOpenHelper.getSpecificTeamID(favoriteMatchesModel.getHomeTeamName(), favoriteMatchesModel.getAwayTeamName());
+                String tID1 = null;
+                String tID2 = null;
+                if (data.moveToFirst()) {
+                    tID1 = data.getString(0);
+                    tID2 = data.getString(1);
+                }
+                int x = 0;
+                Cursor cursor = db.rawQuery("SELECT M_id FROM MATCHES WHERE M_HomeTeamID = ? AND M_AwayTeamID = ?", new String[]{tID1, tID2});
+                if (cursor.moveToFirst()) {
+                    x = cursor.getInt(0);
+                    String.valueOf(x);
+                }
+
+                SpecificMatchFragment specificMatchFragment = new SpecificMatchFragment();
+                FragmentTransaction ft = ((FragmentActivity) tContext).getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_container_homepage, specificMatchFragment).commit();
+                Bundle arguments = new Bundle();
+                arguments.putString("hometeam", favoriteMatchesModel.getHomeTeamName());
+                arguments.putString("awayteam", favoriteMatchesModel.getAwayTeamName());
+                arguments.putInt("matchID", x);
+                specificMatchFragment.setArguments(arguments);
+            }
+        });
     }
 
     @Override
